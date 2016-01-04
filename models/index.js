@@ -7,8 +7,9 @@ var db = {};
 var sequelize = new Sequelize(
   config.database,
   config.username,
-  config.password,
-  { dialect: 'postgres' }
+  config.password, {
+    dialect: 'postgres'
+  }
 );
 
 fs.readdirSync(__dirname).filter(function(file) {
