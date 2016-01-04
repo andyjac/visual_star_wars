@@ -16,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DECIMAL
     },
     id: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.INTEGER,
       primaryKey: true
     },
     name: {
