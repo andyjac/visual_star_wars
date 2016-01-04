@@ -16,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
     producer: {
       type: DataTypes.STRING
     },
-    releaseData: {
+    releaseDate: {
       type: DataTypes.STRING
     },
     title: {
