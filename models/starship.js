@@ -1,13 +1,13 @@
 module.exports = function(sequelize, DataTypes) {
   var Starship = sequelize.define('Starship', {
     cargoCapacity: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.BIGINT,
     },
     consumables: {
       type: DataTypes.STRING,
     },
     costInCredits: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.BIGINT,
     },
     crew: {
       type: DataTypes.INTEGER,
