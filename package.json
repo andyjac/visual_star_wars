@@ -1,8 +1,8 @@
 {
-  "name": "red_five",
+  "name": "visual_star_wars",
   "version": "0.1.0",
-  "description": "Star Wars Visualization",
-  "main": "server.js",
+  "description": "Star Wars relationship visualization",
+  "main": "app.js",
   "dependencies": {
     "async": "^1.5.0",
     "body-parser": "^1.14.2",
@@ -21,7 +21,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node app.js"
   },
   "author": "andyjac",
   "license": "MIT"
