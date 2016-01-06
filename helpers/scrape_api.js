@@ -5,15 +5,13 @@ var request = require('request');
 var fs = require('fs');
 
 module.exports = (function() {
-  var urls = {};
-
   request
     .get(BASE_URL, function(err, res) {
       if (err) {
         return console.log(err);
       }
 
-      urls = JSON.parse(res.body);
+      var urls = JSON.parse(res.body);
       scrapeEndpoints(urls);
     });
 })();
