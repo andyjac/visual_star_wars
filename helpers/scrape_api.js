@@ -36,7 +36,7 @@ function scrapeEndpoints(urls) {
       results[model] = data;
 
       if (++doneCount === models.length) {
-        var fileName = __dirname + '/../db/data.json';
+        var fileName = __dirname + '/../db/output.json';
 
         writeToDisk(fileName, results);
       }
