@@ -1,33 +1,36 @@
 #!/usr/bin/env node
 
+var _ = require('lodash');
 var BASE_URL = 'https://swapi.co/api';
 var request = require('request');
 var fs = require('fs');
+var handleProcessError = require('./handle_process_error');
 
 module.exports = (function() {
-  request
-    .get(BASE_URL, function(err, res) {
-      if (err) {
-        return console.log(err);
-      }
+  console.log('Scraping API...');
 
-      var urls = JSON.parse(res.body);
-      scrapeEndpoints(urls);
-    });
+  request.get(BASE_URL, function(err, res) {
+    if (err) {
+      return handleProcessError(err);
+    }
+
+    var urls = JSON.parse(res.body);
+    scrapeEndpoints(urls);
+  });
 })();
 
 
 function scrapeEndpoints(urls) {
-  var models = Object.keys(urls);
+  var models = _.keys(urls);
   var results = {};
   var doneCount = 0;
 
-  models.forEach(function(model) {
+  _.forEach(models, function(model) {
     var url = urls[model];
 
     fetchData(url, function(err, data) {
       if (err) {
-        return console.log(err);
+        return handleProcessError(err);
       }
 
       results[model] = data;
@@ -63,9 +66,10 @@ function writeToDisk(fileName, data) {
 
   fs.writeFile(fileName, jsonData, function(err) {
     if (err) {
-      return console.log(err);
+      return handleProcessError(err);
     }
 
-    console.log('File written successfully');
+    console.log('API scraped successfully');
+    process.exit(0);
   });
 }
