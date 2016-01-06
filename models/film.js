@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true
     },
     openingCrawl: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
     producer: {
       type: DataTypes.STRING
