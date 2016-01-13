@@ -5,3 +5,7 @@ echo '* BUILDING DATABASE'
 echo ''
 
 node ./lib/build_db_from_scratch.js
+
+echo ''
+echo '* COMPLETE'
+echo ''
