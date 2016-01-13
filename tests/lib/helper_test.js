@@ -25,10 +25,12 @@ describe('helper functions', function() {
 
   it('should pluck an id from a url', function() {
     var url = 'http://www.some-address.org/api/buttz/1/';
-    var id = helpers.fetchIdFromUrl(url);
+    var id1 = helpers.fetchIdFromUrl(url);
+    var id2 = helpers.fetchIdFromUrl('');
 
-    expect(id).to.not.eql(null);
-    expect(id).to.eql('1');
+    expect(id1).to.not.eql(null);
+    expect(id1).to.eql('1');
+    expect(id2).to.eql(null);
   });
 
   it('should remove non-numeric characters', function() {
