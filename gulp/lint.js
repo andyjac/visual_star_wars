@@ -13,3 +13,9 @@ gulp.task('lint:gulp', function() {
     .pipe(eslint())
     .pipe(eslint.format());
 });
+
+gulp.task('lint:lib', function() {
+  return gulp.src(paths.lib)
+    .pipe(eslint())
+    .pipe(eslint.format());
+});
