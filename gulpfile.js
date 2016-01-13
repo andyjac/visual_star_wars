@@ -4,6 +4,7 @@ var runSequence = require('run-sequence');
 require('./gulp/lint');
 require('./gulp/nodemon');
 require('./gulp/watch');
+require('./gulp/build');
 
 gulp.task('start', function(cb) {
   runSequence(
