@@ -2,11 +2,14 @@ module.exports = {
   server: [
     './app.js',
     './models/**/*.js',
-    './controllers/**/*.js',
-    './lib/**/*.js'
+    './controllers/**/*.js'
   ],
   gulp: [
     './gulpfile.js',
     './gulp/**/**'
-  ]
+  ],
+  lib: ['./lib/**/*.js'],
+  test: {
+    lib: ['./tests/lib/**/*test.js']
+  }
 };

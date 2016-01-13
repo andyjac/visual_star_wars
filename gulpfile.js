@@ -5,6 +5,7 @@ require('./gulp/lint');
 require('./gulp/nodemon');
 require('./gulp/watch');
 require('./gulp/build');
+require('./gulp/test');
 
 gulp.task('start', function(cb) {
   runSequence(
@@ -15,11 +16,23 @@ gulp.task('start', function(cb) {
 });
 
 gulp.task('watch', function(cb) {
-  runSequence(
-    [
-      'watch:server',
-      'watch:gulp'
-    ],
-    cb
-  );
+  runSequence([
+    'watch:server',
+    'watch:gulp',
+    'watch:lib'
+  ], cb);
+});
+
+gulp.task('lint', function(cb) {
+  runSequence([
+    'lint:server',
+    'lint:gulp',
+    'lint:lib'
+  ], cb);
+});
+
+gulp.task('test', function(cb) {
+  runSequence([
+    'test:lib'
+  ], cb)
 });
