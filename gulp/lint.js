@@ -1,15 +1,15 @@
 var gulp = require('gulp');
 var eslint = require('gulp-eslint');
-
-var serverPaths = [
-  './app.js',
-  './models/**/*.js',
-  './controllers/**/*.js',
-  './lib/**/*.js'
-];
+var paths = require('./paths');
 
 gulp.task('lint:server', function() {
-  return gulp.src(serverPaths)
+  return gulp.src(paths.server)
+    .pipe(eslint())
+    .pipe(eslint.format());
+});
+
+gulp.task('lint:gulp', function() {
+  return gulp.src(paths.gulp)
     .pipe(eslint())
     .pipe(eslint.format());
 });
