@@ -10,3 +10,7 @@ gulp.task('watch:server', function() {
 gulp.task('watch:gulp', function() {
   gulp.watch(paths.gulp, ['lint:gulp']);
 });
+
+gulp.task('watch:lib', function() {
+  gulp.watch(paths.lib, ['lint:lib']);
+});
