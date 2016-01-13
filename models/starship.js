@@ -1,50 +1,50 @@
 module.exports = function(sequelize, DataTypes) {
   var Starship = sequelize.define('Starship', {
     cargoCapacity: {
-      type: DataTypes.BIGINT,
+      type: DataTypes.BIGINT
     },
     consumables: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
     costInCredits: {
-      type: DataTypes.BIGINT,
+      type: DataTypes.BIGINT
     },
     crew: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER
     },
     hyperdriveRating: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DECIMAL
     },
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true
     },
     length: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DECIMAL
     },
     manufacturer: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
     maxAtmospheringSpeed: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER
     },
     MGLT: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER
     },
     model: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
     name: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
     passengers: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER
     },
     starshipClass: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
     url: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     }
   }, {
     classMethods: {

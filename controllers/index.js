@@ -1,6 +1,4 @@
-var bodyparser = require('body-parser');
 var express = require('express');
-var models = require('../models');
 var router = express.Router();
 
 router.use('/films', require('./films'));

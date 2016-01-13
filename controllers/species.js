@@ -1,5 +1,4 @@
 var express = require('express');
-var request = require('request');
 var models = require('../models');
 var router = express.Router();
 
@@ -9,6 +8,7 @@ router.get('/', function(req, res) {
   }).then(function(species) {
     res.status(200).json(species);
   }).error(function(err) {
+    console.log(err);
     res.status(500).json({msg: 'internal server error'});
   });
 });
@@ -19,6 +19,7 @@ router.get('/:id', function(req, res) {
   }).then(function(person) {
     res.status(200).json(person);
   }).error(function(err) {
+    console.log(err);
     res.status(500).json({msg: 'internal server error'});
   });
 });
