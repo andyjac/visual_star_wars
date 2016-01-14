@@ -10,8 +10,5 @@ gulp.task('test:lib', ['lint:lib'], function() {
     .once('error', function(err) {
       console.log(err);
       process.exit(1);
-    })
-    .once('end', function() {
-      process.exit(0);
     });
 });
