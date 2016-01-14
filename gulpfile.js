@@ -35,3 +35,9 @@ gulp.task('test', function(cb) {
     'test:lib'
   ], cb);
 });
+
+gulp.task('default', function(cb) {
+  runSequence(
+    'watch',
+  cb);
+});
