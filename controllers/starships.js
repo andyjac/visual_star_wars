@@ -1,26 +1,27 @@
 var express = require('express');
-var models = require('../models');
+var Starship = require('../models').Starship;
 var router = express.Router();
 
-router.get('/', function(req, res) {
-  models.Starship.findAll({
-    attributes: ['id', 'name']
-  }).then(function(starships) {
+router.get('/', function(req, res, next) {
+  Starship.getAll(function(err, starships) {
+    if (err) {
+      return next(err);
+    }
+
     res.status(200).json(starships);
-  }).error(function(err) {
-    console.log(err);
-    res.status(500).json({msg: 'internal server error'});
   });
+
 });
 
-router.get('/:id', function(req, res) {
-  models.Starship.findOne({
-    where: { id: req.params.id }
-  }).then(function(starship) {
+router.get('/:id', function(req, res, next) {
+  var id = req.params.id;
+
+  Starship.getOne(id, function(err, starship) {
+    if (err) {
+      return next(err);
+    }
+
     res.status(200).json(starship);
-  }).error(function(err) {
-    console.log(err);
-    res.status(500).json({msg: 'internal server error'});
   });
 });
 

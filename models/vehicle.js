@@ -45,6 +45,26 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         Vehicle.belongsToMany(models.Person, { through: 'VehiclePeople', as: 'Pilots' });
         Vehicle.belongsToMany(models.Film, { through: 'VehicleFilms', as: 'Films' });
+      },
+
+      getAll: function(cb) {
+        this.findAll({
+          attributes: ['id', 'name']
+        }).then(function(vehicles) {
+          cb(null, vehicles);
+        }).error(function(err) {
+          cb(err);
+        });
+      },
+
+      getOne: function(id, cb) {
+        this.findOne({
+          where: { id: id }
+        }).then(function(vehicle) {
+          cb(null, vehicle);
+        }).error(function(err) {
+          cb(err);
+        });
       }
     }
   });

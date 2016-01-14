@@ -33,6 +33,26 @@ module.exports = function(sequelize, DataTypes) {
         Film.belongsToMany(models.Starship, { through: 'FilmStarships', as: 'Starships' });
         Film.belongsToMany(models.Vehicle, { through: 'FilmVehicles', as: 'Vehicles' });
         Film.belongsToMany(models.Species, { through: 'FilmSpecies', as: 'Species' });
+      },
+
+      getAll: function(cb) {
+        this.findAll({
+          attributes: ['id', 'title']
+        }).then(function(films) {
+          cb(null, films);
+        }).error(function(err) {
+          cb(err);
+        });
+      },
+
+      getOne: function(id, cb) {
+        this.findOne({
+          where: { id: id }
+        }).then(function(film) {
+          cb(null, film);
+        }).error(function(err) {
+          cb(err);
+        });
       }
     }
   });

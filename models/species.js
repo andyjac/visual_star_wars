@@ -40,6 +40,26 @@ module.exports = function(sequelize, DataTypes) {
         Species.belongsToMany(models.Film, { through: 'SpeciesFilms', as: 'Films' });
         Species.belongsToMany(models.Person, { through: 'SpeciesPeople', as: 'People' });
         Species.belongsTo(models.Planet, { as: 'Homeworld' });
+      },
+
+      getAll: function(cb) {
+        this.findAll({
+          attributes: ['id', 'name']
+        }).then(function(species) {
+          cb(null, species);
+        }).error(function(err) {
+          cb(err);
+        });
+      },
+
+      getOne: function(id, cb) {
+        this.findOne({
+          where: { id: id }
+        }).then(function(species) {
+          cb(null, species);
+        }).error(function(err) {
+          cb(err);
+        });
       }
     }
   });

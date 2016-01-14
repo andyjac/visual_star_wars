@@ -1,28 +1,26 @@
 var express = require('express');
-var models = require('../models');
+var Person = require('../models').Person;
 var router = express.Router();
 
-router.get('/', function(req, res) {
-  models.Person.findAll({
-    attributes: ['id','name']
-  }).then(function(people) {
+router.get('/', function(req, res, next) {
+  Person.getAll(function(err, people) {
+    if (err) {
+      return next(err);
+    }
+
     res.status(200).json(people);
-  }).error(function(err) {
-    console.log(err);
-    res.status(500).json({msg: 'internal server error'});
   });
 });
 
-router.get('/:id', function(req, res) {
+router.get('/:id', function(req, res, next) {
   var id = req.params.id;
 
-  models.Person.findOne({
-    where: { id: id }
-  }).then(function(person) {
+  Person.getOne(id, function(err, person) {
+    if (err) {
+      return next(err);
+    }
+
     res.status(200).json(person);
-  }).error(function(err) {
-    console.log(err);
-    res.status(500).json({msg: 'internal server error'});
   });
 });
 

@@ -51,6 +51,26 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         Starship.belongsToMany(models.Film, { through: 'StarshipFilms', as: 'Films' });
         Starship.belongsToMany(models.Person, { through: 'StarshipPeople', as: 'Pilots' });
+      },
+
+      getAll: function(cb) {
+        this.findAll({
+          attributes: ['id', 'name']
+        }).then(function(starships) {
+          cb(null, starships);
+        }).error(function(err) {
+          cb(err);
+        });
+      },
+
+      getOne: function(id, cb) {
+        this.findOne({
+          where: { id: id }
+        }).then(function(starship) {
+          cb(null, starship);
+        }).error(function(err) {
+          cb(err);
+        });
       }
     }
   });

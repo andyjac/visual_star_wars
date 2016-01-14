@@ -8,4 +8,6 @@ router.use('/species', require('./species'));
 router.use('/starships', require('./starships'));
 router.use('/vehicles', require('./vehicles'));
 
+router.use(require('../middlewares/handle_error'));
+
 module.exports = router;

@@ -1,28 +1,26 @@
 var express = require('express');
-var models = require('../models');
+var Film = require('../models').Film;
 var router = express.Router();
 
-router.get('/', function(req, res) {
-  models.Film.findAll({
-    attributes: ['id','title']
-  }).then(function(films) {
+router.get('/', function(req, res, next) {
+  Film.getAll(function(err, films) {
+    if (err) {
+      return next(err);
+    }
+
     res.status(200).json(films);
-  }).error(function(err) {
-    console.log(err);
-    res.status(500).json({msg: 'internal server error'});
   });
 });
 
-router.get('/:id', function(req, res) {
+router.get('/:id', function(req, res, next) {
   var id = req.params.id;
 
-  models.Film.findOne({
-    where: { id: id }
-  }).then(function(film) {
+  Film.getOne(id, function(err, film) {
+    if (err) {
+      return next(err);
+    }
+
     res.status(200).json(film);
-  }).error(function(err) {
-    console.log(err);
-    res.status(500).json({msg: 'internal server error'});
   });
 });
 

@@ -1,26 +1,26 @@
 var express = require('express');
-var models = require('../models');
+var Planet = require('../models').Planet;
 var router = express.Router();
 
-router.get('/', function(req, res) {
-  models.Planet.findAll({
-    attributes: ['id', 'name']
-  }).then(function(planets) {
+router.get('/', function(req, res, next) {
+  Planet.getAll(function(err, planets) {
+    if (err) {
+      return next(err);
+    }
+
     res.status(200).json(planets);
-  }).error(function(err) {
-    console.log(err);
-    res.status(500).json({msg: 'internal server error'});
   });
 });
 
-router.get('/:id', function(req, res) {
-  models.Planet.findOne({
-    where: { id: req.params.id }
-  }).then(function(planet) {
+router.get('/:id', function(req, res, next) {
+  var id = req.params.id;
+
+  Planet.getOne(id, function(err, planet) {
+    if (err) {
+      return next(err);
+    }
+
     res.status(200).json(planet);
-  }).error(function(err) {
-    console.log(err);
-    res.status(500).json({msg: 'internal server error'});
   });
 });
 
