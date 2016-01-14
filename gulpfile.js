@@ -33,5 +33,5 @@ gulp.task('lint', function(cb) {
 gulp.task('test', function(cb) {
   runSequence([
     'test:lib'
-  ], cb)
+  ], cb);
 });
