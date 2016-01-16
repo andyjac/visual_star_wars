@@ -32,12 +32,14 @@ gulp.task('lint', function(cb) {
 
 gulp.task('test', function(cb) {
   runSequence([
-    'test:lib'
+    'test:lib',
+    'test:server'
   ], cb);
 });
 
 gulp.task('default', function(cb) {
   runSequence(
+    'lint',
     'watch',
   cb);
 });

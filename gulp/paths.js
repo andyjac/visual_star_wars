@@ -10,6 +10,7 @@ module.exports = {
   ],
   lib: ['./lib/**/*.js'],
   test: {
-    lib: ['./tests/lib/**/*test.js']
+    lib: ['./tests/lib/**/*test.js'],
+    server: ['./tests/server/**/*test.js']
   }
 };
