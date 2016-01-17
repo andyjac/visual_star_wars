@@ -20,7 +20,7 @@ function test(paths) {
     .once('error', function(){
       process.exit(1);
     })
-    .once('done', function() {
+    .once('end', function() {
       process.exit(0);
     });
 }
