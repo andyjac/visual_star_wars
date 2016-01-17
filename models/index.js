@@ -9,7 +9,8 @@ var sequelize = new Sequelize(
   config.database,
   config.username,
   config.password, {
-    dialect: 'postgres'
+    dialect: 'postgres',
+    logging: false
   }
 );
 
