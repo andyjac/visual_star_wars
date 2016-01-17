@@ -1,6 +1,7 @@
 var mocha = require('mocha');
 var expect = require('chai').expect;
 var helpers = require('../../lib/helpers');
+var models = require('../../models');
 
 describe('helper functions', function() {
   it('should create a collection of specs', function() {
@@ -68,14 +69,32 @@ describe('helper functions', function() {
   });
 
   it('should create a spec builder function', function() {
-    var fields = ['title', 'id', 'releaseDate', 'openingCrawl'];
     var item = { 'title': 'foo', 'id': 1, 'release_date': '5/25/1977' };
+    var specMap = {
+      'title': 'title',
+      'id': 'id',
+      'releaseDate': 'release_date',
+    };
 
-    var specBuilderFn = helpers.createSpecBuilderFn(fields);
+    var specBuilderFn = helpers.createSpecBuilderFn(specMap);
     var spec = specBuilderFn(item);
 
     expect(spec.title).to.eql('foo');
     expect(spec.id).to.eql(1);
     expect(spec.releaseDate).to.eql('5/25/1977');
+  });
+
+  it('should describe a models attributes', function(done) {
+    helpers.getModelDescription(models.Film, function(err, attrs) {
+      if (err) {
+        console.log(err);
+        return done();
+      }
+
+      expect(Array.isArray(attrs)).to.eql(true);
+      expect(attrs.indexOf('createdAt')).to.eql(-1);
+      expect(attrs.indexOf('updatedAt')).to.eql(-1);
+      done();
+    });
   });
 });
