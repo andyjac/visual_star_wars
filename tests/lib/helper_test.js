@@ -61,7 +61,7 @@ describe('helper functions', function() {
 
     var joined = helpers.joinPaths(paths);
 
-    expect(Array.isArray(joined)).to.eql(true);
+    expect(_.isArray(joined)).to.eql(true);
     expect(joined.length).to.eql(6);
   });
 
@@ -96,7 +96,7 @@ describe('helper functions', function() {
         return done();
       }
 
-      expect(Array.isArray(attrs)).to.eql(true);
+      expect(_.isArray(attrs)).to.eql(true);
       expect(attrs.indexOf('createdAt')).to.eql(-1);
       expect(attrs.indexOf('updatedAt')).to.eql(-1);
       done();
