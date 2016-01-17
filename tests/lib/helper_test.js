@@ -85,7 +85,7 @@ describe('helper functions', function() {
   });
 
   it('should describe a models attributes', function(done) {
-    helpers.getModelDescription(models.Film, function(err, attrs) {
+    helpers.getModelAttributes(models.Film, function(err, attrs) {
       if (err) {
         console.log(err);
         return done();
