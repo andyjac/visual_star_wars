@@ -57,4 +57,25 @@ describe('helper functions', function() {
     expect(Array.isArray(joined)).to.eql(true);
     expect(joined.length).to.eql(6);
   });
+
+  it('should create a spec map', function() {
+    var fields = ['title', 'id', 'releaseDate', 'openingCrawl'];
+    var specMap = helpers.createSpecMap(fields);
+
+    expect(typeof specMap).to.eql('object');
+    expect(specMap.releaseDate).to.eql('release_date');
+    expect(specMap.openingCrawl).to.eql('opening_crawl');
+  });
+
+  it('should create a spec builder function', function() {
+    var fields = ['title', 'id', 'releaseDate', 'openingCrawl'];
+    var item = { 'title': 'foo', 'id': 1, 'release_date': '5/25/1977' };
+
+    var specBuilderFn = helpers.createSpecBuilderFn(fields);
+    var spec = specBuilderFn(item);
+
+    expect(spec.title).to.eql('foo');
+    expect(spec.id).to.eql(1);
+    expect(spec.releaseDate).to.eql('5/25/1977');
+  });
 });
