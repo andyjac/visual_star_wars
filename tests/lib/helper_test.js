@@ -2,25 +2,31 @@ var mocha = require('mocha');
 var expect = require('chai').expect;
 var helpers = require('../../lib/helpers');
 var models = require('../../models');
+var _ = require('lodash');
 
 describe('helper functions', function() {
   it('should create a collection of specs', function() {
     var input = [
-      {id: 1, name: 'foo', uneededValue: 'buttz'},
-      {id: 2, name: 'baz', uneededValue: 'flub'},
-      {id: 3, name: 'bar', uneededValue: 'ballz'}
+      {id: 1, uneeded_value: 'buttz', something_else: 42 },
+      {id: 2, uneeded_value: 'flub', something_else: 'fizz' },
+      {id: 3, uneeded_value: 'ballz', something_else: 'bang' }
     ];
 
+    var specMap = { 'id': 'id', 'somethingElse': 'something_else' };
+
     var specs = helpers.createSpecs(input, function(item) {
-      return {
-        id: item.id,
-        name: item.name
-      };
+      return _.reduce(specMap, function(spec, value, key) {
+        if (item[value]) {
+          spec[key] = item[value];
+        }
+
+        return spec;
+      }, {});
     });
 
     expect(specs.length).to.eql(3);
     expect(specs[0].id).to.eql(1);
-    expect(specs[1].name).to.eql('baz');
+    expect(specs[1].somethingElse).to.eql('fizz');
     expect(specs[2].uneededValue).to.eql(undefined);
   });
 
@@ -51,7 +57,7 @@ describe('helper functions', function() {
       1: ['./path/to/1', './path/to/2'],
       2: ['./path/to/3', './path/to/4'],
       3: ['./path/to/4', './path/to/5']
-    }
+    };
 
     var joined = helpers.joinPaths(paths);
 
@@ -63,7 +69,6 @@ describe('helper functions', function() {
     var fields = ['title', 'id', 'releaseDate', 'openingCrawl'];
     var specMap = helpers.createSpecMap(fields);
 
-    expect(typeof specMap).to.eql('object');
     expect(specMap.releaseDate).to.eql('release_date');
     expect(specMap.openingCrawl).to.eql('opening_crawl');
   });
@@ -73,7 +78,7 @@ describe('helper functions', function() {
     var specMap = {
       'title': 'title',
       'id': 'id',
-      'releaseDate': 'release_date',
+      'releaseDate': 'release_date'
     };
 
     var specBuilderFn = helpers.createSpecBuilderFn(specMap);
