@@ -17,10 +17,8 @@ function test(paths) {
 
   return gulp.src(paths)
     .pipe(mocha())
-    .once('error', function(){
+    .once('error', function(err){
+      console.log(err);
       process.exit(1);
-    })
-    .once('end', function() {
-      process.exit(0);
     });
 }
