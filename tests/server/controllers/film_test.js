@@ -27,11 +27,9 @@ describe('film controller', function() {
       return film.create(filmSpec);
     }).then(function(result) {
       done();
-      return null;
     }).error(function(err) {
       console.log(err);
       done();
-      return null;
     });
   });
 
