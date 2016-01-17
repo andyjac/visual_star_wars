@@ -84,7 +84,7 @@ describe('helper functions', function() {
     expect(spec.releaseDate).to.eql('5/25/1977');
   });
 
-  it('should describe a models attributes', function(done) {
+  it('should get the attributes of a model', function(done) {
     helpers.getModelAttributes(models.Film, function(err, attrs) {
       if (err) {
         console.log(err);
