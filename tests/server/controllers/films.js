@@ -1,12 +1,11 @@
 var mocha = require('mocha');
 var chai = require('chai');
-var models = require('../../../models');
+var Film = require('../../../models').Film;
 var _ = require('lodash');
+var saveModel = require('../../test_helpers').saveModel;
 var expect = chai.expect;
 
 chai.use(require('chai-http'));
-
-require('../../../app');
 
 describe('film controller', function() {
   var filmSpec = {
@@ -17,24 +16,17 @@ describe('film controller', function() {
     producer: 'Chewbacca',
     releaseDate: '5/25/1977',
     title: 'A New Buttz',
-    url: 'http://www.domain.com/path/to/film'
+    url: 'http://www.domain.com/path/to/film/1'
   };
 
   before(function(done) {
-    models.Film.sync({
-      force: true
-    }).then(function(film) {
-      return film.create(filmSpec);
-    }).then(function(result) {
-      done();
-    }).error(function(err) {
-      console.log(err);
+    saveModel(Film, filmSpec, function(err) {
+      if (err) {
+        return done();
+      }
+
       done();
     });
-  });
-
-  after(function() {
-    models.sequelize.sync({ force: true });
   });
 
   it('should return an array of films', function(done) {
