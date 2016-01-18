@@ -10,8 +10,7 @@ gulp.task('start', function(cb) {
   runSequence(
     'lint:server',
     'nodemon',
-    cb
-  );
+    cb);
 });
 
 gulp.task('watch', function(cb) {
