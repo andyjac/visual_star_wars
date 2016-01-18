@@ -14,4 +14,5 @@ describe('api tests', function() {
 
   require('./people');
   require('./films');
+  require('./planets');
 });
