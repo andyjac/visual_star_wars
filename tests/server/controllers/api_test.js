@@ -12,8 +12,9 @@ describe('api tests', function() {
     });
   });
 
-  require('./people');
   require('./films');
+  require('./people');
   require('./planets');
   require('./species');
+  require('./starships');
 });
