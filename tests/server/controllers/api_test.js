@@ -17,4 +17,5 @@ describe('api tests', function() {
   require('./planets');
   require('./species');
   require('./starships');
+  require('./vehicles');
 });
