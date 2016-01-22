@@ -37,8 +37,8 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        Species.belongsToMany(models.Film, { through: 'SpeciesFilms', as: 'Films' });
-        Species.belongsToMany(models.Person, { through: 'SpeciesPeople', as: 'People' });
+        Species.belongsToMany(models.Film, { through: 'FilmSpecies', as: 'Films' });
+        Species.hasMany(models.Person, { as: 'People' });
         Species.belongsTo(models.Planet, { as: 'Homeworld' });
       },
 

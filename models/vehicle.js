@@ -43,8 +43,8 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        Vehicle.belongsToMany(models.Person, { through: 'VehiclePeople', as: 'Pilots' });
-        Vehicle.belongsToMany(models.Film, { through: 'VehicleFilms', as: 'Films' });
+        Vehicle.belongsToMany(models.Film, { through: 'FilmVehicles', as: 'Films' });
+        Vehicle.belongsToMany(models.Person, { through: 'PersonVehicles', as: 'Pilots' });
       },
 
       getAll: function(cb) {

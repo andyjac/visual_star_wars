@@ -49,8 +49,8 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        Starship.belongsToMany(models.Film, { through: 'StarshipFilms', as: 'Films' });
-        Starship.belongsToMany(models.Person, { through: 'StarshipPeople', as: 'Pilots' });
+        Starship.belongsToMany(models.Film, { through: 'FilmStarships', as: 'Films' });
+        Starship.belongsToMany(models.Person, { through: 'PersonStarships', as: 'Pilots' });
       },
 
       getAll: function(cb) {
