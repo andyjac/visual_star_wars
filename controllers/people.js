@@ -1,9 +1,9 @@
 var express = require('express');
-var Person = require('../models').Person;
+var models = require('../models');
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
-  Person.getAll(function(err, people) {
+  models.Person.getAll(function(err, people) {
     if (err) {
       return next(err);
     }
@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
 router.get('/:id', function(req, res, next) {
   var id = req.params.id;
 
-  Person.getOne(id, function(err, person) {
+  models.Person.getOne(id, function(err, person) {
     if (err) {
       return next(err);
     }

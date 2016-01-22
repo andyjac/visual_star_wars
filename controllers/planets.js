@@ -1,9 +1,9 @@
 var express = require('express');
-var Planet = require('../models').Planet;
+var models = require('../models');
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
-  Planet.getAll(function(err, planets) {
+  models.Planet.getAll(function(err, planets) {
     if (err) {
       return next(err);
     }
@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
 router.get('/:id', function(req, res, next) {
   var id = req.params.id;
 
-  Planet.getOne(id, function(err, planet) {
+  models.Planet.getOne(id, function(err, planet) {
     if (err) {
       return next(err);
     }

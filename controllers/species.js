@@ -1,9 +1,9 @@
 var express = require('express');
-var Species = require('../models').Species;
+var models = require('../models');
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
-  Species.getAll(function(err, species) {
+  models.Species.getAll(function(err, species) {
     if (err) {
       return next(err);
     }
@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
 router.get('/:id', function(req, res, next) {
   var id = req.params.id;
 
-  Species.getOne(id, function(err, species) {
+  models.Species.getOne(id, function(err, species) {
     if (err) {
       return next(err);
     }
