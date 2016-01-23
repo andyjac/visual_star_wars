@@ -44,7 +44,7 @@ module.exports = function(sequelize, DataTypes) {
 
       getAll: function(cb) {
         this.findAll({
-          attributes: ['id', 'name']
+          attributes: ['id', 'name', 'prominence']
         }).then(function(people) {
           cb(null, people);
         }).error(function(err) {
