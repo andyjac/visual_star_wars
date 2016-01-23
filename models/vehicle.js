@@ -34,6 +34,9 @@ module.exports = function(sequelize, DataTypes) {
     passengers: {
       type: DataTypes.INTEGER
     },
+    prominence: {
+      type: DataTypes.INTEGER
+    },
     url: {
       type: DataTypes.STRING
     },

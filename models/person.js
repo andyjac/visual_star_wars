@@ -25,6 +25,9 @@ module.exports = function(sequelize, DataTypes) {
     mass: {
       type: DataTypes.DECIMAL
     },
+    prominence: {
+      type: DataTypes.INTEGER
+    },
     skinColor: {
       type: DataTypes.STRING
     },

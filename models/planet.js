@@ -22,6 +22,9 @@ module.exports = function(sequelize, DataTypes) {
     population: {
       type: DataTypes.BIGINT
     },
+    prominence: {
+      type: DataTypes.INTEGER
+    },
     rotationPeriod: {
       type: DataTypes.INTEGER
     },

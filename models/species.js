@@ -28,6 +28,9 @@ module.exports = function(sequelize, DataTypes) {
     name: {
       type: DataTypes.STRING
     },
+    prominence: {
+      type: DataTypes.INTEGER
+    },
     skinColors: {
       type: DataTypes.STRING
     },

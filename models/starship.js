@@ -40,6 +40,9 @@ module.exports = function(sequelize, DataTypes) {
     passengers: {
       type: DataTypes.INTEGER
     },
+    prominence: {
+      type: DataTypes.INTEGER
+    },
     starshipClass: {
       type: DataTypes.STRING
     },

@@ -16,6 +16,9 @@ module.exports = function(sequelize, DataTypes) {
     producer: {
       type: DataTypes.STRING
     },
+    prominence: {
+      type: DataTypes.INTEGER
+    },
     releaseDate: {
       type: DataTypes.STRING
     },
@@ -30,14 +33,14 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         Film.belongsToMany(models.Person, { through: 'FilmPeople', as: 'Characters' });
         Film.belongsToMany(models.Planet, { through: 'FilmPlanets', as: 'Planets' });
+        Film.belongsToMany(models.Species, { through: 'FilmSpecies', as: 'Species' });
         Film.belongsToMany(models.Starship, { through: 'FilmStarships', as: 'Starships' });
         Film.belongsToMany(models.Vehicle, { through: 'FilmVehicles', as: 'Vehicles' });
-        Film.belongsToMany(models.Species, { through: 'FilmSpecies', as: 'Species' });
       },
 
-      getAll: function(cb) {
+      getAll: function(models, cb) {
         this.findAll({
-          attributes: ['id', 'title']
+          attributes: ['id', 'title', 'prominence']
         }).then(function(films) {
           cb(null, films);
         }).error(function(err) {
