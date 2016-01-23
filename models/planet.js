@@ -1,3 +1,5 @@
+var Promise = require('bluebird');
+
 module.exports = function(sequelize, DataTypes) {
   var Planet = sequelize.define('Planet', {
     climate: {
@@ -58,7 +60,13 @@ module.exports = function(sequelize, DataTypes) {
         this.findOne({
           where: { id: id }
         }).then(function(planet) {
-          cb(null, planet);
+          return Promise.props({
+            planet: planet,
+            residents: planet.getResidents({ attributes: ['id', 'name'] }),
+            films: planet.getFilms({ attributes: ['id', 'title'] })
+          });
+        }).then(function(data) {
+          cb(null, data);
         }).error(function(err) {
           cb(err);
         });

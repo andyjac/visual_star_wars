@@ -1,3 +1,5 @@
+var Promise = require('bluebird');
+
 module.exports = function(sequelize, DataTypes) {
   var Film = sequelize.define('Film', {
     director: {
@@ -52,7 +54,18 @@ module.exports = function(sequelize, DataTypes) {
         this.findOne({
           where: { id: id }
         }).then(function(film) {
-          cb(null, film);
+          var attrs = { attributes: ['id', 'name'] };
+
+          return Promise.props({
+            film: film,
+            characters: film.getCharacters(attrs),
+            planets: film.getPlanets(attrs),
+            species: film.getSpecies(attrs),
+            starships: film.getStarships(attrs),
+            vehicles: film.getVehicles(attrs)
+          });
+        }).then(function(data) {
+          cb(null, data);
         }).error(function(err) {
           cb(err);
         });

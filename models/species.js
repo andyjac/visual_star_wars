@@ -1,3 +1,5 @@
+var Promise = require('bluebird');
+
 module.exports = function(sequelize, DataTypes) {
   var Species = sequelize.define('Species', {
     averageHeight: {
@@ -59,7 +61,14 @@ module.exports = function(sequelize, DataTypes) {
         this.findOne({
           where: { id: id }
         }).then(function(species) {
-          cb(null, species);
+          return Promise.props({
+            species: species,
+            films: species.getFilms({ attributes: ['id', 'title'] }),
+            people: species.getPeople({ attributes: ['id', 'name'] }),
+            homeworld: species.getHomeworld({ attributes: ['id', 'name'] })
+          });
+        }).then(function(data) {
+          cb(null, data);
         }).error(function(err) {
           cb(err);
         });

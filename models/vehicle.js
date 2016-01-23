@@ -1,3 +1,5 @@
+var Promise = require('bluebird');
+
 module.exports = function(sequelize, DataTypes) {
   var Vehicle = sequelize.define('Vehicle', {
     cargoCapacity: {
@@ -64,7 +66,13 @@ module.exports = function(sequelize, DataTypes) {
         this.findOne({
           where: { id: id }
         }).then(function(vehicle) {
-          cb(null, vehicle);
+          return Promise.props({
+            vehicle: vehicle,
+            films: vehicle.getFilms({ attributes: ['id', 'title'] }),
+            pilots: vehicle.getPilots({ attributes: ['id', 'name'] })
+          });
+        }).then(function(data) {
+          cb(null, data);
         }).error(function(err) {
           cb(err);
         });
