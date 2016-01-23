@@ -38,7 +38,7 @@ module.exports = function(sequelize, DataTypes) {
         Film.belongsToMany(models.Vehicle, { through: 'FilmVehicles', as: 'Vehicles' });
       },
 
-      getAll: function(models, cb) {
+      getAll: function(cb) {
         this.findAll({
           attributes: ['id', 'title', 'prominence']
         }).then(function(films) {
