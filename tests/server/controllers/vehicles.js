@@ -50,8 +50,10 @@ describe('vehicle controller', function() {
       .get('/api/vehicles/1')
       .end(function(err, res) {
         expect(err).to.eql(null);
-        expect(res.body.id).to.eql(1);
-        expect(res.body.manufacturer).to.eql('Incom Corporation');
+        expect(res.body.vehicle.id).to.eql(1);
+        expect(res.body.vehicle.manufacturer).to.eql('Incom Corporation');
+        expect(res.body).to.have.property('films');
+        expect(res.body).to.have.property('pilots');
         done();
       });
   });

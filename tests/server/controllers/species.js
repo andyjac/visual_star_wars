@@ -48,8 +48,11 @@ describe('species controller', function() {
       .get('/api/species/1')
       .end(function(err, res) {
         expect(err).to.eql(null);
-        expect(res.body.id).to.eql(1);
-        expect(res.body.name).to.eql('Human');
+        expect(res.body.species.id).to.eql(1);
+        expect(res.body.species.name).to.eql('Human');
+        expect(res.body).to.have.property('films');
+        expect(res.body).to.have.property('people');
+        expect(res.body).to.have.property('homeworld');
         done();
       });
   });

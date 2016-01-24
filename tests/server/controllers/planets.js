@@ -48,8 +48,10 @@ describe('planet controller', function() {
       .get('/api/planets/1')
       .end(function(err, res) {
         expect(err).to.eql(null);
-        expect(res.body.id).to.eql(1);
-        expect(res.body.name).to.eql('Buttz');
+        expect(res.body.planet.id).to.eql(1);
+        expect(res.body.planet.name).to.eql('Buttz');
+        expect(res.body).to.have.property('residents');
+        expect(res.body).to.have.property('films');
         done();
       });
   });

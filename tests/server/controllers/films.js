@@ -45,8 +45,13 @@ describe('film controller', function() {
       .get('/api/films/1')
       .end(function(err, res) {
         expect(err).to.eql(null);
-        expect(res.body.id).to.eql(1);
-        expect(res.body.director).to.eql('George Foobaz');
+        expect(res.body.film.id).to.eql(1);
+        expect(res.body.film.director).to.eql('George Foobaz');
+        expect(res.body).to.have.property('characters');
+        expect(res.body).to.have.property('planets');
+        expect(res.body).to.have.property('species');
+        expect(res.body).to.have.property('starships');
+        expect(res.body).to.have.property('vehicles');
         done();
       });
   });

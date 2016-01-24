@@ -52,8 +52,10 @@ describe('starship controller', function() {
       .get('/api/starships/1')
       .end(function(err, res) {
         expect(err).to.eql(null);
-        expect(res.body.id).to.eql(1);
-        expect(res.body.model).to.eql('YT-1300 light freighter');
+        expect(res.body.starship.id).to.eql(1);
+        expect(res.body.starship.model).to.eql('YT-1300 light freighter');
+        expect(res.body).to.have.property('films')
+        expect(res.body).to.have.property('pilots')
         done();
       });
   });

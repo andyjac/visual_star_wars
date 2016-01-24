@@ -47,8 +47,11 @@ describe('person controller', function() {
       .get('/api/people/1')
       .end(function(err, res) {
         expect(err).to.eql(null);
-        expect(res.body.id).to.eql(1);
-        expect(res.body.birthYear).to.eql('1990');
+        expect(res.body.person.id).to.eql(1);
+        expect(res.body.person.birthYear).to.eql('1990');
+        expect(res.body).to.have.property('films');
+        expect(res.body).to.have.property('starships');
+        expect(res.body).to.have.property('vehicles');
         done();
       });
   });
