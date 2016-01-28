@@ -36,7 +36,7 @@ describe('helper functions', function() {
     var id2 = helpers.fetchIdFromUrl('');
 
     expect(id1).to.not.eql(null);
-    expect(id1).to.eql('1');
+    expect(id1).to.eql(1);
     expect(id2).to.eql(null);
   });
 
