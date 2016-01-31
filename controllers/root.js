@@ -1,14 +1,20 @@
 var async = require('async');
 var models = require('../models');
+var Film = models.Film;
+var Person = models.Person;
+var Planet = models.Planet;
+var Species = models.Species;
+var Starship = models.Starship;
+var Vehicle = models.Vehicle;
 
 module.exports = function(req, res, next) {
   async.parallel({
-    films: models.Film.getAll.bind(models.Film),
-    people: models.Person.getAll.bind(models.Person),
-    planets: models.Planet.getAll.bind(models.Planet),
-    species: models.Species.getAll.bind(models.Species),
-    starships: models.Starship.getAll.bind(models.Starship),
-    vehicles: models.Vehicle.getAll.bind(models.Vehicle)
+    films: Film.getAll.bind(Film),
+    people: Person.getAll.bind(Person),
+    planets: Planet.getAll.bind(Planet),
+    species: Species.getAll.bind(Species),
+    starships: Starship.getAll.bind(Starship),
+    vehicles: Vehicle.getAll.bind(Vehicle)
   }, function(err, data) {
     if (err) {
       return next(err);
