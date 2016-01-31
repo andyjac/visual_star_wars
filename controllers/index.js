@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+router.get('/', require('./root'));
+
 router.use('/films', require('./films'));
 router.use('/people', require('./people'));
 router.use('/planets', require('./planets'));
