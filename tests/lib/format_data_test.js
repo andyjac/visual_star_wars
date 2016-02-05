@@ -41,7 +41,7 @@ describe('format data test', function() {
     }.bind(this));
   });
 
-  it('should format a collection of data', function() {
+  it('should format and normalize a collection of data', function() {
     var film = this.formattedData.films[0];
     var person = this.formattedData.people[0];
 
