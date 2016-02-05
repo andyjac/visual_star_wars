@@ -12,6 +12,7 @@ describe('api tests', function() {
     });
   });
 
+  require('./root');
   require('./films');
   require('./people');
   require('./planets');
